@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Editor.css';
 import EmotionItem from './EmotionItem';
 import Button from './Button';
@@ -42,7 +42,7 @@ const getStringedDate = (targetDate) => {
   return `${year}-${month}-${date}`;
 };
 
-const Editor = ({ onSubmit }) => {
+const Editor = ({ onSubmit, initData }) => {
   // 사용자가 작성한 내용
   const [input, setInput] = useState({
     createdDate: new Date(),
@@ -67,6 +67,16 @@ const Editor = ({ onSubmit }) => {
   const onSubmitButtonClick = () => {
     onSubmit(input);
   };
+
+  useEffect(() => {
+    if (initData) {
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate)),
+      });
+    }
+  }, [initData]);
+
   return (
     <div className="Editor">
       <section className="date_section">
