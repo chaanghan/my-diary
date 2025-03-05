@@ -5,12 +5,14 @@ import Button from '../components/Button';
 import Editor from '../components/Editor';
 import { DiaryDispatchContext, DiaryStateContext } from '../App';
 import useDiary from '../hooks/useDiary';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Edit = () => {
   const { id } = useParams();
   const nav = useNavigate();
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
   const curDiaryItem = useDiary(id);
+  usePageTitle(`${id}번 일기 수정`);
 
   const onSubmit = (input) => {
     if (window.confirm('일기를 정말 수정할까요?')) {
