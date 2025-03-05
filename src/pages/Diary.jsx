@@ -10,7 +10,6 @@ const Diary = () => {
   const { id } = useParams();
   const nav = useNavigate();
   const curDiaryItem = useDiary(id);
-  console.log(curDiaryItem);
 
   if (!curDiaryItem) {
     return <div>데이터 로딩중...!</div>;
